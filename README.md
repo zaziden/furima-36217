@@ -84,5 +84,5 @@ Things you may want to cover:
 
 ### Association
 * belongs_to :user
-* has_many :destinations
+* has_one :destination
 * has_one :item
