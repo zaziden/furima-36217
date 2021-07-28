@@ -41,7 +41,6 @@ Things you may want to cover:
 ### Association
 * has_many :items
 * has_many :orders
-* has_one_attached :destination
 
 ## items テーブル
 
@@ -59,7 +58,7 @@ Things you may want to cover:
 
 ### Association
 * belongs_to :user
-* has_one_attached :order
+* has_one :order
 
 ## destinations テーブル
 
@@ -67,14 +66,14 @@ Things you may want to cover:
 | ------------- | ---------- | ------------------|
 | post_code     | string     | null: false       |
 | prefecture_id | integer    | null: false       |
-| city          | text       | null: false       |
-| street_number | text       | null: false       |
+| city          | string     | null: false       |
+| street_number | string     | null: false       |
 | building_name | string     |                   |
 | phone_number  | string     | null: false       |
 | order         | references | foreign_key: true |
 
 ### Association
-* has_many :orders
+* belongs_to :order
 
 ## orders テーブル
 
@@ -85,4 +84,5 @@ Things you may want to cover:
 
 ### Association
 * belongs_to :user
-* belongs_to :destination
+* has_many :destinations
+* has_one :item
