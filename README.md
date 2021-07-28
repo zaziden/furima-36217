@@ -27,50 +27,46 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| nickname           | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| first_name         | string | null: false |
-| family_name        | string | null: false |
-| first_name_kana    | string | null: false |
-| family_name_kana   | string | null: false |
-| birth_day          | date   | null: false |
+| Column             | Type   | Options                   |
+| ------------------ | ------ | ------------------------- |
+| nickname           | string | null: false               |
+| email              | string | null: false, unique: true |
+| encrypted_password | string | null: false               |
+| first_name         | string | null: false               |
+| family_name        | string | null: false               |
+| first_name_kana    | string | null: false               |
+| family_name_kana   | string | null: false               |
+| birth_day          | date   | null: false               |
 
 ## items テーブル
 
-| Column             | Type         | Options     |
-| ------------------ | ------------ | ----------- |
-| user               | references   |             |
-| name               | string       | null: false |
-| item_description   | text         | null: false |
-| category           | string       | null: false |
-| item_condition     | string       | null: false |
-| delivery_charge    | string       | null: false |
-| area               | string       | null: false |
-| preparation_day    | integer      | null: false |
-| price              | integer      | null: false |
-| image              | ActiveStorage|             |
+| Column             | Type         | Options           |
+| ------------------ | ------------ | ----------------- |
+| user               | references   | foreign_key: true |
+| name               | string       | null: false       |
+| description        | text         | null: false       |
+| category_id        | integer      | null: false       |
+| item_condition_id  | integer      | null: false       |
+| delivery_charge_id | integer      | null: false       |
+| area_id            | integer      | null: false       |
+| preparation_day_id | integer      | null: false       |
+| price              | integer      | null: false       |
 
 ## destination テーブル
 
-| Column             | Type          | Options     |
-| ------------------ | ------------- | ----------- |
-| post_code          | string        | null: false |
-| prefecture         | text          | null: false |
-| city               | text          | null: false |
-| street_number      | text          | null: false |
-| building_name      | text          | null: false |
-| phone_number       | integer       | null: false |
-| user               | references    |             |
-| credit_card        | references    |             |
+| Column        | Type       | Options           |
+| ------------- | ---------- | ------------------|
+| post_code     | string     | null: false       |
+| prefecture    | text       | null: false       |
+| city          | text       | null: false       |
+| street_number | text       | null: false       |
+| building_name | string     |                   |
+| phone_number  | string     | null: false       |
+| order         | references | foreign_key: true |
 
-## credit_cards テーブル
+## orders テーブル
 
-| Column             | Type          | Options     |
-| ------------------ | ------------- | ----------- |
-| card_number        | integer       | null: false |
-| expiration_date    | integer       | null: false |
-| security_code      | integer       | null: false |
-| user               | references    |             |
+| Column      | Type       | Options           |
+| ----------- | -----------| ----------------- |
+| user        | references | foreign_key: true |
+| item        | references | foreign_key: true |
