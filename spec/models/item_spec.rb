@@ -62,13 +62,13 @@ RSpec.describe Item, type: :model do
       end
   
       it "priceは、300以上での入力でないと出品できないこと" do
-        @item.price = '299'
+        @item.price = 299
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
 
       it "priceは、9999999以下での入力でないと出品できないこと" do
-        @item.price = '10000000'
+        @item.price = 10000000
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not included in the list")
       end
