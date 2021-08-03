@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
      render :edit
     end
   end
-end
+
 
 
   private
