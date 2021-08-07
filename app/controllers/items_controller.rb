@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :unl, only: [:edit, :update, :destroy]
+  before_action :item_order_present, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.order("created_at DESC")
@@ -19,7 +20,7 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
   def show
   end
 
@@ -54,5 +55,11 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:name, :description, :image, :category_id, :item_condition_id, :delivery_charge_id, :area_id, :preparation_day_id, :price).merge(user_id: current_user.id)
+  end
+
+  def item_order_present
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 end
