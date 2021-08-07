@@ -19,11 +19,14 @@ class ItemsController < ApplicationController
       render :new
     end
   end
-
+  
   def show
   end
 
   def edit
+    if @item.order.present?
+      redirect_to root_path
+    end
   end
 
   def update

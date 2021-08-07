@@ -10,6 +10,19 @@ RSpec.describe DestinationOrder, type: :model do
     end
 
     context '商品購入できない時'  do
+      
+      it "user_idがない場合は購入できないこと" do
+        @destination_order.user_id = nil
+        @destination_order.valid?
+        expect(@destination_order.errors.full_messages).to include("User can't be blank")
+      end
+
+      it "item_idがない場合は購入できないこと" do
+        @destination_order.item_id = nil
+        @destination_order.valid?
+        expect(@destination_order.errors.full_messages).to include("Item can't be blank")
+      end
+
       it "post_codeがない場合は購入できないこと" do
         @destination_order.post_code = ''
         @destination_order.valid?
