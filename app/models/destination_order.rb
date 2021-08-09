@@ -3,7 +3,7 @@ class DestinationOrder
   attr_accessor :post_code, :prefecture_id, :city, :street_number, :building_name, :phone_number, :user_id, :item_id, :token
 
   with_options presence: true do
-    validates :post_code, format: { with: /\A\d{3}\-?\d{4}\z/ }
+    validates :post_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :city
     validates :street_number
     validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/ }
